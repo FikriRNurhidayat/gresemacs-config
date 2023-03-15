@@ -1,0 +1,1 @@
+(eshell/clear-scrollback)

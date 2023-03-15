@@ -1,0 +1,7 @@
+#+title: My Emacs Configuration
+#+author: Fikri Rahmat Nurhidayat
+#+email: fikrirnurhidayat@gmail.com
+
+* What needs to be done.
+** TODO Setup default org mode view.
+** TODO Tidy-up modules.
