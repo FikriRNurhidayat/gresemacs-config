@@ -1,11 +1,11 @@
 ;;; fain-editor.el -*- lexical-binding: t; -*-
-(ensure-packages-installed '(evil evil-collection tree-sitter tree-sitter-langs yasnippet))
-
-;; Evil
-(setq evil-want-keybinding nil)
-(evil-collection-init)
-(evil-mode 1)
+(ensure-packages-installed '(tree-sitter tree-sitter-langs yasnippet yaml-mode))
 
 (global-tree-sitter-mode)
 (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
 (add-to-list 'tree-sitter-major-mode-language-alist '(org-mode . org))
+
+(setq scroll-conservatively 10000)
+(setq scroll-margin 3)
+
+(delete-selection-mode 1)

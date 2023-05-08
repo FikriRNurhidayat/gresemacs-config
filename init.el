@@ -45,22 +45,39 @@
 (setq ring-bell-function 'ignore)
 (setq use-short-answers t)
 (setq make-backup-files nil)
+(setq indent-tabs-mode nil)
 
 (setq org-ellipsis " ⤵ ")
 
-(ensure-packages-installed '(project eglot go-mode org-modern magit))
+(ensure-packages-installed '(project eglot go-mode org-modern))
 
 ;; ORG Modern
 (require 'org-modern)
 (global-org-modern-mode)
 ;; TODO: Move me
 (setq org-modern-list '((43 . "◦") (45 . "•") (42 . "•")))
+;; TODO: Move me
+(ensure-packages-installed '(ox-rss))
 
 (with-eval-after-load 'org-modern
  (add-hook 'org-mode #'visual-line-mode))
 
 (use-module 'fain-editor)
+(use-module 'fain-ide)
 (use-module 'fain-ui)
 (use-module 'fain-dired)
 (use-module 'fain-present)
 (use-module 'fain-eshell)
+(use-module 'fain-word)
+(use-module 'fain-agenda)
+
+(defun fain/setup-font ()
+  "."
+  (set-face-attribute 'fixed-pitch nil :font "Iosevka" :inherit 'fixed-pitch))
+
+(if (daemonp)
+    (add-hook 'after-make-frame-functions
+              (lambda (frame)
+                (select-frame frame)
+                (if (display-graphic-p frame)
+                    (fain/setup-font)))))

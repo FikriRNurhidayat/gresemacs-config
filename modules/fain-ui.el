@@ -14,7 +14,7 @@
 
 (setq completion-styles '(substring basic))
 
-(load-theme 'doom-nord t)
+(load-theme 'doom-nord-aurora t)
 
 (global-visual-line-mode 1)
 (vertico-mode 1)
@@ -24,7 +24,6 @@
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
 (global-set-key (kbd "C-`") 'popper-toggle-latest) 
-
 
 (defun setup-popper ()
   "Setup popper."

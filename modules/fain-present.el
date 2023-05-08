@@ -52,14 +52,14 @@
 	  (org-present)
 	(org-present-quit)))
 
-(defvar fain/org-present-org-level-scale '((org-level-1 . 2.5)
-										   (org-level-2 . 2.5)
-										   (org-level-3 . 1.5)
-										   (org-level-4 . 1.5)
-										   (org-level-5 . 1.5)
-										   (org-level-6 . 1.5)
-										   (org-level-7 . 1.5)
-										   (org-level-8 . 1.5))
+(defvar fain/org-present-org-level-scale '((org-level-1 . 1.5)
+										   (org-level-2 . 1.25)
+										   (org-level-3 . 1.25)
+										   (org-level-4 . 1.25)
+										   (org-level-5 . 1.25)
+										   (org-level-6 . 1.25)
+										   (org-level-7 . 1.25)
+										   (org-level-8 . 1.25))
   "Org level size remap for presentation.")
 
 (defun fain/org-present-enable-hook ()
@@ -103,7 +103,7 @@
                                            `((default (:height 1.5) default)
                                              (header-line (:height 8.0 :background ,(face-attribute 'default :background)) header-line)
                                              (org-block (:background ,(face-attribute 'org-block-begin-line :background)) org-block)
-                                             (org-document-title (:height 4.0) org-document-title)
+                                             (org-document-title (:height 2.5) org-document-title)
                                              (org-document-info (:height 1.25) org-document-info))))
   (display-line-numbers-mode 0)
 
@@ -120,7 +120,6 @@
 	  (mixed-pitch-mode 1))
 
   (visual-line-mode 1)
-  (evil-normal-state)
   (org-display-inline-images))
 
 (defun fain/org-present-prepare-slide (buffer-name heading)
@@ -195,8 +194,3 @@
 (add-hook 'org-present-after-navigate-functions 'fain/org-present-prepare-slide)
 (add-hook 'org-present-mode-hook 'fain/org-present-enable-hook)
 (add-hook 'org-present-mode-quit-hook 'fain/org-present-disable-hook)
-
-(evil-define-key 'normal org-present-mode-keymap (kbd "C-h") 'fain/org-present-previous-sibling)
-(evil-define-key 'normal org-present-mode-keymap (kbd "C-l") 'fain/org-present-next-sibling)
-(evil-define-key 'normal org-present-mode-keymap (kbd "q") 'fain/org-present-mode)
-(evil-define-key 'normal org-mode-map (kbd "C-t p") 'fain/org-present-mode)

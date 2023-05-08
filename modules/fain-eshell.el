@@ -1,5 +1,5 @@
-;;; fain-eshell.el -*- lexical-binding: t; -*-
-(require 'magit)
+;;; fain-eshell.pel -*- lexical-binding: t; -*-
+(ensure-packages-installed '(magit))
 
 (defun read-file (file-path)
   "Read file with temporary buffer."
@@ -8,7 +8,6 @@
     (buffer-string)))
 
 (defun fain/eshell-configure ()
-  (evil-collection-eshell-setup)
   (push 'eshell-tramp eshell-modules-list)
   (delq 'eshell-handle-ansi-color eshell-output-filter-functions)
 
@@ -29,13 +28,7 @@
 
   ;; Initialize the shell history
   (eshell-hist-initialize)
-
-  (evil-define-key '(normal insert visual) eshell-mode-map (kbd "C-r") 'consult-history)
-  (evil-define-key '(normal insert visual) eshell-mode-map (kbd "<home>") 'eshell-bol)
-  (evil-normalize-keymaps)
-
   (setenv "PAGER" "cat")
-
   (setq eshell-prompt-function      'fain/eshell-prompt
         eshell-prompt-regexp        "^λ "
         eshell-history-size         10000
@@ -65,7 +58,7 @@
      (if (= (user-uid) 0)
          (propertize "\n#" 'face `(:foreground ,(face-attribute 'font-lock-type-face :foreground)))
        (propertize "\nλ" 'face `(:foreground ,(face-attribute 'font-lock-type-face :foreground))))
-     (propertize " " 'face `(:foreground ,(face-attribute 'fringe :foreground))))))
+     (propertize " " 'face `(:foreground ,(face-attribute 'default :foreground))))))
 
 (defun fain/get-prompt-path ()
   (let* ((current-path (eshell/pwd))
@@ -96,5 +89,6 @@
     (yank))
 
 ;; Clear Command
-(evil-define-key 'normal 'eshell-mode-map (kbd "C-l") (lambda () (interactive) (run-this-in-eshell "clear 1")))
-(evil-define-key 'insert 'eshell-mode-map (kbd "C-l") (lambda () (interactive) (run-this-in-eshell "clear 1")))
+(add-hook 'eshell-mode
+		  (lambda ()
+			(define-key eshell-mode-map (kbd "C-l") (lambda () (interactive) (run-this-in-eshell "clear 1")))))
