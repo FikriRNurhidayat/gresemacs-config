@@ -71,13 +71,13 @@
 (use-module 'fain-word)
 (use-module 'fain-agenda)
 
-(defun fain/setup-font ()
-  "."
-  (set-face-attribute 'fixed-pitch nil :font "Iosevka" :inherit 'fixed-pitch))
+;; (defun fain/setup-font ()
+;;   "."
+;;   (set-face-attribute 'fixed-pitch nil :font "Iosevka Term" :inherit 'fixed-pitch))
 
-(if (daemonp)
-    (add-hook 'after-make-frame-functions
-              (lambda (frame)
-                (select-frame frame)
-                (if (display-graphic-p frame)
-                    (fain/setup-font)))))
+;; (if (daemonp)
+;;     (add-hook 'after-make-frame-functions
+;;               (lambda (frame)
+;;                 (select-frame frame)
+;;                 (if (display-graphic-p frame)
+;;                     (fain/setup-font)))))

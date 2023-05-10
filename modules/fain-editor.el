@@ -9,3 +9,5 @@
 (setq scroll-margin 3)
 
 (delete-selection-mode 1)
+
+(define-key prog-mode-map (kbd "C-M-;") 'comment-region)
