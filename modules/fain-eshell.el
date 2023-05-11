@@ -1,4 +1,5 @@
-;;; fain-eshell.pel -*- lexical-binding: t; -*-
+;;; fain-eshell.el -*- lexical-binding: t; -*-
+
 (ensure-packages-installed '(magit))
 
 (defun read-file (file-path)
@@ -88,7 +89,16 @@
     (eshell-bol)
     (yank))
 
+(defun fain/eshell-clear ()
+  "Clear eshell buffer."
+  (interactive)
+  (run-this-in-eshell "clear 1"))
+
+(defun fain/eshell-mode-hook ()
+  "Setup keybinding on eshell."
+  (define-key eshell-mode-map (kbd "C-l") 'fain/eshell-clear))
+
 ;; Clear Command
-(add-hook 'eshell-mode
-		  (lambda ()
-			(define-key eshell-mode-map (kbd "C-l") (lambda () (interactive) (run-this-in-eshell "clear 1")))))
+(add-hook 'eshell-mode-hook 'fain/eshell-mode-hook)
+
+;;; fain-eshell.el ends here

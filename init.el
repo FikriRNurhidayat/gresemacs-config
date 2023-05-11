@@ -38,7 +38,7 @@
 (scroll-bar-mode -1)
 
 (setq warning-minimum-level :emergency)
-(setq-default tab-width 4)
+(setq-default tab-width 2)
 (setq display-line-numbers-type 'relative)
 
 (setq frame-title-format '("%b"))
@@ -49,18 +49,10 @@
 
 (setq org-ellipsis " ⤵ ")
 
-(ensure-packages-installed '(project eglot go-mode org-modern))
-
-;; ORG Modern
-(require 'org-modern)
-(global-org-modern-mode)
-;; TODO: Move me
-(setq org-modern-list '((43 . "◦") (45 . "•") (42 . "•")))
-;; TODO: Move me
-(ensure-packages-installed '(ox-rss))
+(ensure-packages-installed '(project))
 
 (with-eval-after-load 'org-modern
- (add-hook 'org-mode #'visual-line-mode))
+  (add-hook 'org-mode #'visual-line-mode))
 
 (use-module 'fain-editor)
 (use-module 'fain-ide)
@@ -71,13 +63,4 @@
 (use-module 'fain-word)
 (use-module 'fain-agenda)
 
-;; (defun fain/setup-font ()
-;;   "."
-;;   (set-face-attribute 'fixed-pitch nil :font "Iosevka Term" :inherit 'fixed-pitch))
-
-;; (if (daemonp)
-;;     (add-hook 'after-make-frame-functions
-;;               (lambda (frame)
-;;                 (select-frame frame)
-;;                 (if (display-graphic-p frame)
-;;                     (fain/setup-font)))))
+;; init.el ends here

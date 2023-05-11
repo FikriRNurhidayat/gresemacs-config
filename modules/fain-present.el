@@ -1,3 +1,5 @@
+;; fain-present.el -*- lexical-binding: t -*-
+
 (ensure-packages-installed '(org-present org-modern mixed-pitch visual-fill-column))
 
 (require 'org-indent)
@@ -194,3 +196,5 @@
 (add-hook 'org-present-after-navigate-functions 'fain/org-present-prepare-slide)
 (add-hook 'org-present-mode-hook 'fain/org-present-enable-hook)
 (add-hook 'org-present-mode-quit-hook 'fain/org-present-disable-hook)
+
+;;; fain-present.el ends here

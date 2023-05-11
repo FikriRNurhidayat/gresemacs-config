@@ -1,4 +1,4 @@
-;; fain-agenda.el --- ORG Agenda configuration file -*- lexical-binding: t -*-
+;;; fain-agenda.el -*- lexical-binding: t -*-
 
 (setq fain/org-agenda-directory "~/Documents/agenda/")
 
@@ -7,3 +7,5 @@
   (expand-file-name file fain/org-agenda-directory))
 
 (setq org-agenda-files (list (fain/org-agenda-file "agenda.org")))
+
+;;; fain-agenda.el ends here

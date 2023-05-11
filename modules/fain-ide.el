@@ -1,3 +1,5 @@
+;; fain-ide.el  -*- lexical-binding: t -*-
+
 (ensure-packages-installed '(eglot go-mode rust-mode simple-httpd))
 
 (define-key eglot-mode-map (kbd "C-c a") 'eglot-code-actions)
@@ -7,3 +9,5 @@
 (define-key eglot-mode-map (kbd "C-c o") 'eglot-code-action-organize-imports)
 (define-key eglot-mode-map (kbd "C-c h") 'eldoc)
 (define-key eglot-mode-map (kbd "C-c c f") 'xref-find-definitions)
+
+;;; fain-ide.el ends here

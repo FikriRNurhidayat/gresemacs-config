@@ -1,4 +1,5 @@
-;;; fain-write.el -*- lexical-binding: t; -*-
+;;; fain-word.el -*- lexical-binding: t; -*-
+
 (ensure-packages-installed '(visual-fill-column mixed-pitch))
 
 (define-minor-mode fain/org-essay-mode ()
@@ -16,3 +17,5 @@
     (visual-fill-column-mode 0)))
 
 (define-key org-mode-map (kbd "C-c t n") 'fain/org-essay-mode)
+
+;;; fain-word.el ends here
