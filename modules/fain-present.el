@@ -133,8 +133,8 @@
   (setq-local header-line-format nil
               face-remapping-alist nil
               org-adapt-indentation nil
-			  visual-line-mode fain/org-present--visual-line-mode
-			  org-ellipsis fain/org-present--org-ellipsis
+			        visual-line-mode fain/org-present--visual-line-mode
+			        org-ellipsis fain/org-present--org-ellipsis
               inhibit-message fain/org-present--inhibit-message
               echo-keystrokes fain/org-present--echo-keystrokes)
   (org-present-small)
