@@ -197,4 +197,9 @@
 (add-hook 'org-present-mode-hook 'fain/org-present-enable-hook)
 (add-hook 'org-present-mode-quit-hook 'fain/org-present-disable-hook)
 
+(define-key org-mode-map (kbd "C-c t p") 'fain/org-present-mode)
+(define-key org-present-mode-keymap (kbd "C-c t p") 'fain/org-present-mode)
+(define-key org-present-mode-keymap (kbd "M-n") 'fain/org-present-next-sibling)
+(define-key org-present-mode-keymap (kbd "M-p") 'fain/org-present-previous-sibling)
+
 ;;; fain-present.el ends here

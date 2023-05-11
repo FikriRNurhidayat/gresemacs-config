@@ -21,7 +21,8 @@
 
 (global-org-modern-mode)
 
-(setq org-modern-list '((43 . "◦") (45 . "•") (42 . "•")))
+(setq org-modern-list '((43 . "◦") (45 . "•") (42 . "•"))
+      org-modern-block-fringe nil)
 
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 ;; (add-hook 'prog-mode-hook #'display-line-numbers-mode)
