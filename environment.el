@@ -29,3 +29,6 @@
 (setenv "GOPATH" (environment--path-from-home "Repositories/GO"))
 (setenv "PATH" (environment--append-path (concat (getenv "GOPATH") "/bin")))
 (setenv "PATH" (environment--append-path (concat (getenv "GOROOT") "/bin")))
+
+;; Rust
+(setenv "PATH" (environment--append-path (environment--path-from-home ".cargo/bin")))

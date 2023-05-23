@@ -22,7 +22,7 @@
   ;; in eshell but not during other times when we might be launching
   ;; a shell command to gather its output.
   (add-hook 'eshell-pre-command-hook
-            (lambda () (setenv "TERM" "xterm")))
+            (lambda () (setenv "TERM" "dumb")))
 
   ;; Use completion-at-point to provide completions in eshell
   (define-key eshell-mode-map (kbd "<tab>") 'completion-at-point)

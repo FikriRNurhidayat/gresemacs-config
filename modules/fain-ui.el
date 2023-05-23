@@ -13,7 +13,7 @@
 
 (setq completion-styles '(substring basic))
 
-(load-theme 'modus-operandi t)
+(load-theme 'modus-vivendi t)
 
 (global-visual-line-mode 1)
 (vertico-mode 1)
@@ -22,7 +22,17 @@
 (global-org-modern-mode)
 
 (setq org-modern-list '((43 . "◦") (45 . "•") (42 . "•"))
-      org-modern-block-fringe nil)
+      org-modern-block-fringe nil
+      org-modern-keyword '(("title"       . "title:      ")
+                        ("description" . "description:")
+                        ("subtitle"    . "subtitle:   ")
+                        ("date"        . "date:       ")
+                        ("email"       . "email:      ")
+                        ("author"      . "author:     ")
+                        ("language"    . "language:   ")
+                        ("filetags"    . "filetags:   ")
+                        ("options"     . "options:    ")
+                        (t . t)))
 
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 ;; (add-hook 'prog-mode-hook #'display-line-numbers-mode)
@@ -43,7 +53,9 @@
       (set-face-background face (face-attribute 'default :background)))
     (set-face-background 'fringe (face-attribute 'default :background))
     (set-face-attribute 'mode-line nil :box nil)
-    (set-face-attribute 'mode-line-inactive nil :box nil)))
+    (set-face-attribute 'mode-line-inactive nil :box nil))
+  (set-face-attribute 'variable-pitch nil :family "Iosevka Aile")
+  (set-face-attribute 'fixed-pitch nil :family "Iosevka Fixed"))
 
 (setq-default inhibit-message nil
       echo-keystrokes nil
