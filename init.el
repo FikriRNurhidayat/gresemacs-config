@@ -30,7 +30,6 @@
       environment-file (from-emacs-config-directory "environment.el"))
 
 (load-file environment-file)
-(load-file custom-file)
 
 (setq inhibit-startup-message t)
 (menu-bar-mode -1)
