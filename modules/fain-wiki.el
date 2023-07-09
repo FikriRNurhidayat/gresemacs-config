@@ -4,6 +4,7 @@
 
 (setq org-roam-directory (file-truename "~/Documents/wiki/"))
 
+(global-set-key (kbd "C-c n n") 'org-roam-capture)
 (global-set-key (kbd "C-c n l") 'org-roam-buffer-toggle)
 (global-set-key (kbd "C-c n f f") 'org-roam-node-find)
 (global-set-key (kbd "C-c n j") 'org-roam-dailies-capture-today)

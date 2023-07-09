@@ -40,7 +40,7 @@
 (setq-default tab-width 2)
 (setq display-line-numbers-type 'relative)
 
-(setq frame-title-format '("%b"))
+(setq frame-title-format '("GNU Emacs"))
 (setq ring-bell-function 'ignore)
 (setq use-short-answers t)
 (setq make-backup-files nil)

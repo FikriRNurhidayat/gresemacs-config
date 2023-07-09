@@ -14,7 +14,7 @@
 
 (setq completion-styles '(substring basic))
 
-(load-theme 'doom-nord t)
+(load-theme 'whiteboard t)
 
 (global-visual-line-mode 1)
 (vertico-mode 1)
@@ -60,6 +60,7 @@
                   window-divider-first-pixel
                   window-divider-last-pixel
                   internal-border
+                  fringe
                   border))
     (face-spec-reset-face face)
     (set-face-foreground face (face-attribute 'default :background))
