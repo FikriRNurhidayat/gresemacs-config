@@ -14,7 +14,7 @@
 
 (setq completion-styles '(substring basic))
 
-(load-theme 'whiteboard t)
+(load-theme 'modus-vivendi t)
 
 (global-visual-line-mode 1)
 (vertico-mode 1)
