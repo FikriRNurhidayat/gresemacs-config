@@ -51,8 +51,9 @@
      '((right-divider-width . 16)
        (internal-border-width . 16)))
     (fain/style-theme))
+  (set-face-attribute 'default nil :family "Iosevka" :height 120)
   (set-face-attribute 'variable-pitch nil :family "Iosevka Aile")
-  (set-face-attribute 'fixed-pitch nil :family "Iosevka Fixed"))
+  (set-face-attribute 'fixed-pitch nil :family "Iosevka"))
 
 (defun fain/style-theme ()
   "TODO"

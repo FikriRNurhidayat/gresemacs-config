@@ -48,13 +48,13 @@
     (concat
      "\n"
      (propertize (system-name) 'face `(:foreground ,(face-attribute 'font-lock-keyword-face :foreground)))
-     (propertize " • " 'face `(:foreground ,(face-attribute 'fringe :foreground)))
+     (propertize " • " 'face `(:foreground ,(face-attribute 'font-lock-comment-face :foreground)))
      (propertize (fain/get-prompt-path) 'face `(:foreground ,(face-attribute 'font-lock-variable-name-face :foreground)))
      (when current-branch
        (concat
-        (propertize " • " 'face `(:foreground ,(face-attribute 'fringe :foreground)))
+        (propertize " • " 'face `(:foreground ,(face-attribute 'font-lock-comment-face :foreground)))
         (propertize (concat " " current-branch) 'face `(:foreground ,(face-attribute 'font-lock-preprocessor-face :foreground)))))
-     (propertize " • " 'face `(:foreground ,(face-attribute 'fringe :foreground)))
+     (propertize " • " 'face `(:foreground ,(face-attribute 'font-lock-comment-face :foreground)))
      (propertize (format-time-string "%I:%M:%S %p") 'face `(:foreground ,(face-attribute 'font-lock-comment-face :foreground)))
      (if (= (user-uid) 0)
          (propertize "\n#" 'face `(:foreground ,(face-attribute 'font-lock-type-face :foreground)))

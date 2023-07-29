@@ -19,4 +19,12 @@
 (define-key prog-mode-map (kbd "C-M-;") 'comment-region)
 (global-set-key (kbd "C-c C-g") 'magit)
 
+;; TODO: Move me
+(defun programming-view ()
+  "Setup programming view."
+  (visual-line-mode 0)
+  (setq-local truncate-lines t))
+
+(add-hook 'prog-mode-hook #'programming-view)
+
 ;;; fain-editor.el ends here
