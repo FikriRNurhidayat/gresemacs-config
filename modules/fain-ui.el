@@ -14,7 +14,7 @@
 
 (setq completion-styles '(substring basic))
 
-(load-theme 'modus-vivendi t)
+(load-theme 'ewal-doom-one t)
 
 (global-visual-line-mode 1)
 (vertico-mode 1)
@@ -53,7 +53,8 @@
     (fain/style-theme))
   (set-face-attribute 'default nil :family "Iosevka" :height 120)
   (set-face-attribute 'variable-pitch nil :family "Iosevka Aile")
-  (set-face-attribute 'fixed-pitch nil :family "Iosevka"))
+  (set-face-attribute 'fixed-pitch nil :family "Iosevka")
+  (set-fontset-font t nil (font-spec :name "Symbols Nerd Font")))
 
 (defun fain/style-theme ()
   "TODO"

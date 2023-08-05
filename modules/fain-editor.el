@@ -12,6 +12,7 @@
 (delete-selection-mode 1)               ; Allow us to replace text on selected region
 
 (setq-default indent-tabs-mode nil)     ; Disable tabs, use spaces
+(setq-default tab-width 2)
 
 (setq make-backup-files nil)            ; Disable backup files
 (setq auto-save-default nil)            ; Disable auto save files

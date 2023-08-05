@@ -26,7 +26,7 @@
 
 ;; Golang
 (setenv "GOARCH" "amd64")
-(setenv "GOPATH" (environment--path-from-home "Repositories/GO"))
+(setenv "GOPATH" (environment--path-from-home ".local/share/go"))
 (setenv "PATH" (environment--append-path (concat (getenv "GOPATH") "/bin")))
 (setenv "PATH" (environment--append-path (concat (getenv "GOROOT") "/bin")))
 
