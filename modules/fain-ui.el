@@ -9,6 +9,8 @@
 							               visual-fill-column
                              org-modern
                              org-appear
+                             ewal
+                             ewal-doom-themes
 							               hide-mode-line
 							               mixed-pitch))
 
