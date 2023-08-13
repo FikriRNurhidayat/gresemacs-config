@@ -28,7 +28,7 @@
       org-modern-block-fringe nil
       org-modern-keyword '(("title"       . "title:      ")
                            ("description" . "description:")
-                           ("summary"        . "date:       ")
+                           ("summary"     . "summary:    ")
                            ("subtitle"    . "subtitle:   ")
                            ("date"        . "date:       ")
                            ("email"       . "email:      ")

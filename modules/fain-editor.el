@@ -28,4 +28,11 @@
 
 (add-hook 'prog-mode-hook #'programming-view)
 
+(defun kill-other-buffers ()
+  "Kill other buffers."
+  (interactive)
+  (mapc 'kill-buffer (delete (current-buffer) (buffer-list))))
+
+(global-set-key (kbd "C-x C-k C-o") 'kill-other-buffers)
+
 ;;; fain-editor.el ends here
