@@ -60,7 +60,7 @@
 (use-module 'fain-present)
 (use-module 'fain-eshell)
 (use-module 'fain-word)
-(use-module 'fain-agenda)
+(use-module 'fain-gtd)
 (use-module 'fain-wiki)
 
 ;; init.el ends here

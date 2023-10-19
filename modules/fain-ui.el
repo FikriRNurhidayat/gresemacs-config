@@ -9,10 +9,12 @@
 							               visual-fill-column
                              org-modern
                              org-appear
+                             beacon
                              ewal
                              ewal-doom-themes
 							               hide-mode-line
-							               mixed-pitch))
+							               mixed-pitch
+                             all-the-icons))
 
 (setq completion-styles '(substring basic))
 
@@ -21,6 +23,7 @@
 (global-visual-line-mode 1)
 (vertico-mode 1)
 (rainbow-mode 1)
+(beacon-mode 1)
 
 (global-org-modern-mode)
 
@@ -54,7 +57,7 @@
        (internal-border-width . 16)))
     (fain/style-theme))
   (set-face-attribute 'default nil :family "Iosevka" :height 120)
-  (set-face-attribute 'variable-pitch nil :family "Iosevka Aile")
+  (set-face-attribute 'variable-pitch nil :family "Iosevka Etoile")
   (set-face-attribute 'fixed-pitch nil :family "Iosevka")
   (set-fontset-font t nil (font-spec :name "Symbols Nerd Font")))
 

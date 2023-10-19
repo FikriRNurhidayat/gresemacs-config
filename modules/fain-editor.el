@@ -9,6 +9,8 @@
 (setq scroll-conservatively 10000)
 (setq scroll-margin 3)
 
+(setq x-underline-at-descent-line t)
+
 (delete-selection-mode 1)               ; Allow us to replace text on selected region
 
 (setq-default indent-tabs-mode nil)     ; Disable tabs, use spaces
