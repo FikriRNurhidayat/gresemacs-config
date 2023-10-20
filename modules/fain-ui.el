@@ -10,15 +10,11 @@
                              org-modern
                              org-appear
                              beacon
-                             ewal
-                             ewal-doom-themes
 							               hide-mode-line
 							               mixed-pitch
                              all-the-icons))
 
 (setq completion-styles '(substring basic))
-
-(load-theme 'ewal-doom-one t)
 
 (global-visual-line-mode 1)
 (vertico-mode 1)
@@ -48,6 +44,18 @@
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 (add-hook 'after-init-hook #'global-company-mode)
 
+(defun fain/setup-font ()
+  "TODO"
+  (set-face-attribute 'default nil :family "IBM Plex Mono" :height 120)
+  (set-face-attribute 'variable-pitch nil :family "IBM Plex Serif")
+  (set-face-attribute 'fixed-pitch nil :family "IBM Plex Mono")
+  (set-fontset-font t nil (font-spec :name "Symbols Nerd Font")))
+
+(defun fain/reload-font ()
+  "TODO"
+  (interactive)
+  (fain/setup-font))
+
 (defun fain/make-frame (frame)
   "Setup Emacs frame."
   (select-frame frame)
@@ -56,10 +64,7 @@
      '((right-divider-width . 16)
        (internal-border-width . 16)))
     (fain/style-theme))
-  (set-face-attribute 'default nil :family "Iosevka" :height 120)
-  (set-face-attribute 'variable-pitch nil :family "Iosevka Etoile")
-  (set-face-attribute 'fixed-pitch nil :family "Iosevka")
-  (set-fontset-font t nil (font-spec :name "Symbols Nerd Font")))
+  (fain/setup-font))
 
 (defun fain/style-theme ()
   "TODO"
@@ -84,6 +89,17 @@
 (add-hook 'modus-themes-after-load-theme-hook #'fain/style-theme)
 
 (global-hide-mode-line-mode 1)
+
+(with-system gnu/linux
+  (ensure-packages-installed '(ewal ewal-doom-themes))
+  (load-theme 'ewal-doom-one t)
+  (fain/style-theme)
+  (fain/setup-font))
+
+(with-system darwin
+  (load-theme 'modus-operandi t)
+  (fain/style-theme)
+  (fain/setup-font))
 
 ;; Helpful
 (define-key helpful-mode-map [remap revert-buffer] #'helpful-update)

@@ -16,10 +16,10 @@
                              fain/org-gtd-tickler-file))
 
 (setq org-capture-templates '(("t" "Todo [inbox]" entry
-                               (file+headline fain/org-gtd-inbox-file "Tasks")
+                               (file fain/org-gtd-inbox-file)
                                "* TODO %i%?")
                               ("T" "Tickler" entry
-                               (file+headline fain/org-gtd-tickler-file "Tickler")
+                               (file fain/org-gtd-tickler-file)
                                "* %i%? \n %U")))
 
 (setq org-refile-targets '((fain/org-gtd-project-file :maxlevel . 3)
@@ -52,7 +52,7 @@
 (defun org-current-is-todo ()
   (string= "TODO" (org-get-todo-state)))
 
-(global-set-key (kbd "C-c c") 'org-capture)
+(global-set-key (kbd "C-c o") 'org-capture)
 
 ;;; fain-gtd.el ends here
 
