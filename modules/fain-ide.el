@@ -2,12 +2,11 @@
 
 (ensure-packages-installed '(eglot go-mode rust-mode simple-httpd geiser geiser-guile))
 
-(add-to-list 'eglot-server-programs '((c++-mode c-mode) "clangd"))
-
 (add-hook 'c-mode-hook 'eglot-ensure)
 (add-hook 'c++-mode-hook 'eglot-ensure)
 (add-hook 'go-mode-hook 'eglot-ensure)
 (add-hook 'rust-mode-hook 'eglot-ensure)
+(add-hook 'javascript-mode-hook 'eglot-ensure)
 
 (define-key eglot-mode-map (kbd "C-c a") 'eglot-code-actions)
 (define-key eglot-mode-map (kbd "M-c f f") 'eglot-format)

@@ -98,9 +98,6 @@
 				  org-modern-block-fringe nil
 				  org-modern-keyword fain/org-present-org-modern-keyword))
 
-  (if (package-installed-p 'mixed-pitch)
-	  (setq-local fain/org-present--mixed-pitch-mode mixed-pitch-mode))
-
   (setq-local face-remapping-alist (append (mapcar (lambda (face) `(,(car face) (:height ,(cdr face))  ,(car face))) fain/org-present-org-level-scale)
                                            `((default (:height 1.5) default)
                                              (header-line (:height 8.0 :background ,(face-attribute 'default :background)) header-line)
@@ -145,9 +142,6 @@
 		(setq-local visual-fill-column-width fain/org-present--visual-fill-column-width
 					visual-fill-column-center-text fain/org-present--visual-fill-column-center-text)
 		(visual-fill-column-mode 0)))
-
-  (if (package-installed-p 'mixed-pitch)
-	  (mixed-pitch-mode fain/org-present--mixed-pitch-mode))
 
   (org-indent-mode fain/org-present--org-indent-mode)
 

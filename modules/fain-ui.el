@@ -47,7 +47,7 @@
 (defun fain/setup-font ()
   "TODO"
   (set-face-attribute 'default nil :family "IBM Plex Mono" :height 120)
-  (set-face-attribute 'variable-pitch nil :family "IBM Plex Serif")
+  (set-face-attribute 'variable-pitch nil :family "IBM Plex Mono")
   (set-face-attribute 'fixed-pitch nil :family "IBM Plex Mono")
   (set-fontset-font t nil (font-spec :name "Symbols Nerd Font")))
 
@@ -92,14 +92,10 @@
 
 (with-system gnu/linux
   (ensure-packages-installed '(ewal ewal-doom-themes))
-  (load-theme 'ewal-doom-one t)
-  (fain/style-theme)
-  (fain/setup-font))
+  (load-theme 'ewal-doom-one t))
 
 (with-system darwin
-  (load-theme 'modus-operandi t)
-  (fain/style-theme)
-  (fain/setup-font))
+  (load-theme 'modus-operandi t))
 
 ;; Helpful
 (define-key helpful-mode-map [remap revert-buffer] #'helpful-update)
