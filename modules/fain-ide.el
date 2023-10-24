@@ -2,6 +2,10 @@
 
 (ensure-packages-installed '(eglot go-mode rust-mode simple-httpd geiser geiser-guile))
 
+(with-eval-after-load 'eglot
+  (add-to-list 'eglot-server-programs
+               '((rust-ts-mode rust-mode) . ("rustup" "run" "stable" "rust-analyzer"))))
+
 (add-hook 'c-mode-hook 'eglot-ensure)
 (add-hook 'c++-mode-hook 'eglot-ensure)
 (add-hook 'go-mode-hook 'eglot-ensure)
