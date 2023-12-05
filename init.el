@@ -36,7 +36,7 @@
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 
-(setq warning-minimum-level :emergency)
+;; (setq warning-minimum-level :emergency)
 (setq-default tab-width 2)
 (setq display-line-numbers-type 'relative)
 

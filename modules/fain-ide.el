@@ -1,6 +1,6 @@
 ;; fain-ide.el  -*- lexical-binding: t -*-
 
-(ensure-packages-installed '(eglot go-mode rust-mode simple-httpd geiser geiser-guile))
+(ensure-packages-installed '(eglot go-mode rust-mode simple-httpd geiser geiser-guile elm-mode))
 
 (with-eval-after-load 'eglot
   (add-to-list 'eglot-server-programs
