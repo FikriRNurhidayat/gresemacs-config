@@ -36,7 +36,7 @@
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 
-;; (setq warning-minimum-level :emergency)
+(setq warning-minimum-level :emergency)
 (setq-default tab-width 2)
 (setq display-line-numbers-type 'relative)
 
@@ -62,5 +62,6 @@
 (use-module 'fain-word)
 (use-module 'fain-gtd)
 (use-module 'fain-wiki)
+(use-module 'fain-project)
 
 ;; init.el ends here
