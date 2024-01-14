@@ -63,5 +63,6 @@
 (use-module 'fain-gtd)
 (use-module 'fain-wiki)
 (use-module 'fain-project)
+(use-module 'fain-tools)
 
 ;; init.el ends here

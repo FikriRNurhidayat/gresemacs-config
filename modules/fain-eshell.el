@@ -1,6 +1,6 @@
 ;;; fain-eshell.el -*- lexical-binding: t; -*-
 
-(ensure-packages-installed '(magit))
+(ensure-packages-installed '(magit eat))
 
 (defun read-file (file-path)
   "Read file with temporary buffer."
@@ -100,5 +100,7 @@
 
 ;; Clear Command
 (add-hook 'eshell-mode-hook 'fain/eshell-mode-hook)
+(add-hook 'eshell-load-hook #'eat-eshell-mode)
+
 
 ;;; fain-eshell.el ends here

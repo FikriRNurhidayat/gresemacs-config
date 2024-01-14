@@ -15,20 +15,15 @@
 
 (setq-default indent-tabs-mode nil)     ; Disable tabs, use spaces
 (setq-default tab-width 2)
+(setq-default c-basic-offset 2)
+(setq-default standard-indent 2)
 
 (setq make-backup-files nil)            ; Disable backup files
 (setq auto-save-default nil)            ; Disable auto save files
+(setq completion-ignored-extensions '("#" "~" ".o" ".elc" ".pyc" ".class"))
 
 (define-key prog-mode-map (kbd "C-M-;") 'comment-region)
 (global-set-key (kbd "C-c C-g") 'magit)
-
-;; TODO: Move me
-(defun programming-view ()
-  "Setup programming view."
-  (visual-line-mode 0)
-  (setq-local truncate-lines t))
-
-(add-hook 'prog-mode-hook #'programming-view)
 
 (defun kill-other-buffers ()
   "Kill other buffers."

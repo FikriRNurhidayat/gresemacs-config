@@ -7,6 +7,7 @@
 							               helpful
 							               company
 							               visual-fill-column
+                             doom-modeline
                              org-modern
                              org-appear
                              beacon
@@ -15,7 +16,6 @@
                              all-the-icons))
 
 (setq completion-styles '(substring basic))
-
 (global-visual-line-mode 1)
 (vertico-mode 1)
 (rainbow-mode 1)
@@ -105,7 +105,7 @@
   (fain/style-theme)
   (fain/setup-font))
 
-(global-hide-mode-line-mode 1)
+(doom-modeline-mode 1)
 
 ;; Helpful
 (define-key helpful-mode-map [remap revert-buffer] #'helpful-update)

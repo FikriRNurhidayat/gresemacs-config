@@ -6,23 +6,31 @@
   (add-to-list 'eglot-server-programs
                '((rust-ts-mode rust-mode) . ("rustup" "run" "stable" "rust-analyzer"))))
 
-(defun fain/js-mode-hook ()
-  "Hook when javascript is started."
+(defun fain/programming-view ()
+  "Setup programming view."
+  (visual-line-mode 0)
+  (setq-default)
+  (setq truncate-lines t)
   (setq indent-tabs-mode nil)
   (setq tab-width 2)
   (setq js-indent-level 2)
+  (setq c-basic-offset 2)
+  (setq standard-indent 2))
+
+(defun fain/ensure-lsp ()
+  "Run lsp."
+  (interactive)
+  (fain/programming-view)
+  (add-hook 'before-save-hook 'eglot-format-buffer)
   (eglot-ensure))
 
-(add-hook 'c-mode-hook 'eglot-ensure)
-(add-hook 'c++-mode-hook 'eglot-ensure)
-(add-hook 'go-mode-hook 'eglot-ensure)
-(add-hook 'rust-mode-hook 'eglot-ensure)
-(add-hook 'js-mode-hook 'fain/js-mode-hook)
-
-(setq major-mode-remap-alist
-  '((css-mode  . css-ts-mode)
-    (js-mode . js-ts-mode)
-    (typescript-mode . typescript-ts-mode)))
+(add-hook 'prog-mode-hook #'fain/programming-view)
+(dolist (mode-hook '(c-mode-hook
+                     c++-mode-hook
+                     go-mode-hook
+                     rust-mode-hook
+                     js-mode-hook))
+  (add-hook mode-hook 'fain/ensure-lsp))
 
 (define-key eglot-mode-map (kbd "C-c a") 'eglot-code-actions)
 (define-key eglot-mode-map (kbd "M-c f f") 'eglot-format)
