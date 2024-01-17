@@ -53,6 +53,5 @@
   (string= "TODO" (org-get-todo-state)))
 
 (global-set-key (kbd "C-c o") 'org-capture)
-
 ;;; fain-gtd.el ends here
 

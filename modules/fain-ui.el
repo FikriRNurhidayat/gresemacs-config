@@ -7,7 +7,6 @@
 							               helpful
 							               company
 							               visual-fill-column
-                             doom-modeline
                              org-modern
                              org-appear
                              beacon
@@ -73,14 +72,12 @@
   "Setup Emacs frame."
   (select-frame frame)
   (when (display-graphic-p)
-    (modify-all-frames-parameters
-     '((right-divider-width . 16)
-       (internal-border-width . 16)))
     (fain/style-theme))
   (fain/setup-font))
 
 (defun fain/style-theme ()
   "TODO"
+  (window-divider-mode 1)
   (dolist (face '(window-divider
                   window-divider-first-pixel
                   window-divider-last-pixel
@@ -104,8 +101,6 @@
 (unless (daemonp)
   (fain/style-theme)
   (fain/setup-font))
-
-(doom-modeline-mode 1)
 
 ;; Helpful
 (define-key helpful-mode-map [remap revert-buffer] #'helpful-update)
