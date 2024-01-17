@@ -60,6 +60,7 @@
 (use-module 'fain-present)
 (use-module 'fain-modeline)
 (use-module 'fain-eshell)
+(use-module 'fain-llm)
 (use-module 'fain-word)
 (use-module 'fain-gtd)
 (use-module 'fain-wiki)
