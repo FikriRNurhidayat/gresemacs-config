@@ -3,6 +3,7 @@
 (ensure-packages-installed '(vertico
 							               rainbow-mode
 							               rainbow-delimiters
+                             spacious-padding
                              doom-themes
 							               helpful
 							               company
@@ -77,6 +78,9 @@
 
 (defun fain/style-theme ()
   "TODO"
+  (set-frame-parameter nil 'alpha-background (if (eq window-system 'x)
+                                                 100
+                                               0))
   (window-divider-mode 1)
   (dolist (face '(window-divider
                   window-divider-first-pixel
@@ -111,6 +115,16 @@
 (global-set-key [remap describe-variable] #'helpful-variable)
 (global-set-key (kbd "C-h F") #'helpful-function)
 (global-set-key (kbd "C-h K") #'describe-keymap)
+
+(setq spacious-padding-widths
+      '(:internal-border-width 16
+        :header-line-width 16
+        :mode-line-width 16
+        :tab-width 2
+        :right-divider-width 16
+        :scroll-bar-width 16))
+
+(spacious-padding-mode 1)
 
 (provide 'fain-ui)
 

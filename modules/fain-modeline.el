@@ -3,12 +3,11 @@
 (setq-default mode-line-format '(
                                  "%e"
                                  " "
-                                 fain/modeline-buffer-name
-                                 " "
-                                 fain/modeline-major-mode-name))
+                                 fain/modeline-buffer-name))
 
-(set-face-attribute 'mode-line nil :background (face-attribute 'default :background) :box (face-attribute 'region :background))
-(set-face-attribute 'mode-line-inactive nil :background (face-attribute 'default :background))
+(set-face-attribute 'mode-line nil :background (face-attribute 'default :background) :box nil)
+(set-face-attribute 'mode-line-active nil :background (face-attribute 'default :background) :box nil)
+(set-face-attribute 'mode-line-inactive nil :background (face-attribute 'default :background) :box nil)
 
 (defun fain/modeline--major-mode-name ()
   "Retrieve major mode as string."
@@ -28,7 +27,5 @@
 
 (put 'fain/modeline-major-mode-name 'risky-local-variable t)
 (put 'fain/modeline-buffer-name 'risky-local-variable t)
-
-(global-hide-mode-line-mode 1)
 
 ;;; fain-modeline.el ends here
