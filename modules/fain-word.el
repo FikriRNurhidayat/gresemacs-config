@@ -1,6 +1,8 @@
 ;;; fain-word.el -*- lexical-binding: t; -*-
 
-(ensure-packages-installed '(visual-fill-column mixed-pitch adaptive-wrap))
+(use-package visual-fill-column)
+(use-package mixed-pitch)
+(use-package adaptive-wrap)
 
 (define-minor-mode fain/org-essay-mode ()
   "Toggle essay view for org mode."

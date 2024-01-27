@@ -1,6 +1,6 @@
 ;;; fain-eshell.el -*- lexical-binding: t; -*-
 
-(ensure-packages-installed '(magit eat))
+(use-package eat)
 
 (defun read-file (file-path)
   "Read file with temporary buffer."

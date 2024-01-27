@@ -1,19 +1,17 @@
 ;;; fain-ui.el -*- lexical-binding: t; -*-
 
-(ensure-packages-installed '(vertico
-							               rainbow-mode
-							               rainbow-delimiters
-                             spacious-padding
-                             doom-themes
-							               helpful
-							               company
-							               visual-fill-column
-                             org-modern
-                             org-appear
-                             beacon
-							               hide-mode-line
-							               mixed-pitch
-                             all-the-icons))
+(use-package vertico)
+(use-package rainbow-mode)
+(use-package spacious-padding)
+(use-package doom-themes)
+(use-package helpful)
+(use-package company)
+(use-package visual-fill-column)
+(use-package org-modern)
+(use-package org-appear)
+(use-package beacon)
+(use-package hide-mode-line)
+(use-package mixed-pitch)
 
 (setq completion-styles '(substring basic))
 (global-visual-line-mode 1)

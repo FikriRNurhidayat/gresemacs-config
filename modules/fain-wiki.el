@@ -1,6 +1,6 @@
 ;;; fain-wiki.el -*- lexical-binding: t; -*-
 
-(ensure-packages-installed '(org-roam))
+(use-package org-roam)
 
 (setq org-roam-directory (file-truename "~/Documents/wiki/"))
 

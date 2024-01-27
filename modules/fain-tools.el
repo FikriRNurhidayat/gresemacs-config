@@ -1,5 +1,5 @@
 ;; fain-tools.el  -*- lexical-binding: t -*-
 
-(ensure-packages-installed '(restclient))
+(use-package restclient)
 
 ;;; fain-ide.el ends here

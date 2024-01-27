@@ -48,7 +48,7 @@
 
 (setq org-ellipsis " ⤵ ")
 
-(ensure-packages-installed '(project))
+(use-package project)
 
 (with-eval-after-load 'org-modern
   (add-hook 'org-mode #'visual-line-mode))

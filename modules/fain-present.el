@@ -1,6 +1,9 @@
 ;; fain-present.el -*- lexical-binding: t -*-
 
-(ensure-packages-installed '(org-present org-modern mixed-pitch visual-fill-column))
+(use-package org-present)
+(use-package org-modern)
+(use-package mixed-pitch)
+(use-package visual-fill-column)
 
 (require 'org-indent)
 

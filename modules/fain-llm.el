@@ -1,6 +1,6 @@
 ;; fain-llm.el  -*- lexical-binding: t -*-
 
-(ensure-packages-installed '(gptel))
+(use-package gptel)
 
 (global-set-key (kbd "C-c C-<return>") 'gptel-menu)
 (global-set-key (kbd "C-c <return>") 'gptel-send)

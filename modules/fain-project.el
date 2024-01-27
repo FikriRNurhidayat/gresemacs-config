@@ -1,6 +1,6 @@
 ;;; fain-project.el -*- lexical-binding: t; -*-
 
-(ensure-packages-installed '(project))
+(use-package project)
 
 (global-set-key (kbd "C-x p a") #'project-remember-projects-under)
 

@@ -1,6 +1,10 @@
 ;;; fain-editor.el -*- lexical-binding: t; -*-
 
-(ensure-packages-installed '(tree-sitter tree-sitter-langs yasnippet yaml-mode magit))
+(use-package tree-sitter)
+(use-package tree-sitter-langs)
+(use-package yasnippet)
+(use-package yaml-mode)
+(use-package magit)
 
 (global-tree-sitter-mode)
 (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
