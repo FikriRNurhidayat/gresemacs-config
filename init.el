@@ -26,45 +26,16 @@
 
 ;;; Code:
 
-(setq custom-file (from-emacs-config-directory "custom.el")
-      environment-file (from-emacs-config-directory "environment.el"))
-
-(load-file environment-file)
-
-(setq inhibit-startup-message t)
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
-
-(setq warning-minimum-level :emergency)
-(setq-default tab-width 2)
-(setq display-line-numbers-type 'relative)
-
-(setq frame-title-format '("GNU Emacs"))
-(setq ring-bell-function 'ignore)
-(setq use-short-answers t)
-(setq make-backup-files nil)
-(setq indent-tabs-mode nil)
-
-(setq org-ellipsis " ⤵ ")
-
-(use-package project)
-
-(with-eval-after-load 'org-modern
-  (add-hook 'org-mode #'visual-line-mode))
-
-(use-module 'fain-editor)
-(use-module 'fain-ide)
+(use-module 'fain-essential)
 (use-module 'fain-ui)
 (use-module 'fain-dired)
-(use-module 'fain-present)
-(use-module 'fain-modeline)
+(use-module 'fain-editor)
 (use-module 'fain-eshell)
-(use-module 'fain-llm)
-(use-module 'fain-word)
-(use-module 'fain-gtd)
-(use-module 'fain-wiki)
+(use-module 'fain-ide)
+(use-module 'fain-present)
 (use-module 'fain-project)
 (use-module 'fain-tools)
+(use-module 'fain-wiki)
+(use-module 'fain-word)
 
 ;; init.el ends here

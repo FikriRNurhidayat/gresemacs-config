@@ -1,128 +1,142 @@
 ;;; fain-ui.el -*- lexical-binding: t; -*-
 
-(use-package vertico)
-(use-package rainbow-mode)
-(use-package spacious-padding)
-(use-package doom-themes)
-(use-package helpful)
-(use-package company)
-(use-package visual-fill-column)
-(use-package org-modern)
-(use-package org-appear)
-(use-package beacon)
-(use-package hide-mode-line)
-(use-package mixed-pitch)
+(use-package vertico
+  :ensure t
+  :defer t
+  :init (vertico-mode))
 
-(setq completion-styles '(substring basic))
+(use-package rainbow-mode
+  :defer t
+  :ensure t
+  :hook (fundamental-mode))
+
+(use-package spacious-padding
+  :defer t
+  :ensure t
+  :custom (spacious-padding-widths
+           '(:internal-border-width 16
+                                    :header-line-width 16
+                                    :mode-line-width 16
+                                    :tab-width 2
+                                    :right-divider-width 16
+                                    :scroll-bar-width 16))
+  :init (spacious-padding-mode))
+
+(use-package helpful
+  :defer t
+  :ensure t
+  :bind (([remap describe-command] . helpful-command)
+	 ([remap describe-function] . helpful-callable)
+	 ([remap describe-key] . helpful-key)
+	 ([remap describe-symbol] . helpful-symbol)
+	 ([remap describe-variable] . helpful-variable)
+	 :map helpful-mode-map
+	      ([remap revert-buffer] . helpful-update)))
+
+(use-package company
+  :defer t
+  :ensure t
+  :hook (prog-mode text-mode))
+
+(use-package visual-fill-column
+  :defer t
+  :ensure t)
+
+(use-package org-modern
+  :defer t
+  :ensure t
+  :custom
+  (org-modern-hide-stars t)
+  (org-modern-block-fringe nil)
+  (org-modern-keyword '(("title"       . "title:      ")
+                       ("description" . "description:")
+                       ("summary"     . "summary:    ")
+                       ("subtitle"    . "subtitle:   ")
+                       ("date"        . "date:       ")
+                       ("email"       . "email:      ")
+                       ("author"      . "author:     ")
+                       ("language"    . "language:   ")
+                       ("filetags"    . "filetags:   ")
+                       ("options"     . "options:    ")
+                       (t . t)))
+  :config
+  (global-org-modern-mode))
+
+(use-package org-appear
+  :defer t
+  :ensure t
+  :hook (org-mode . org-appear-mode))
+
+;; TODO: Remove this package
+(use-package mixed-pitch
+  :defer t
+  :ensure t)
+
+(use-package catppuccin-theme
+  :ensure t
+  :custom
+  (catppuccin-flavor 'mocha)
+  :config
+  (load-theme 'catppuccin :no-confirm))
+
+(use-package ligature
+  :ensure t
+  :config
+  (global-ligature-mode 1))
+
+(use-package hide-mode-line
+  :ensure t
+  :config
+  (global-hide-mode-line-mode 1))
+
 (global-visual-line-mode 1)
-(vertico-mode 1)
-(rainbow-mode 1)
-(beacon-mode 1)
-
-(global-org-modern-mode)
-
-(setq org-modern-list '((43 . "◦") (45 . "•") (42 . "•"))
-      org-modern-block-fringe nil
-      org-modern-keyword '(("title"       . "title:      ")
-                           ("description" . "description:")
-                           ("summary"     . "summary:    ")
-                           ("subtitle"    . "subtitle:   ")
-                           ("date"        . "date:       ")
-                           ("email"       . "email:      ")
-                           ("author"      . "author:     ")
-                           ("language"    . "language:   ")
-                           ("filetags"    . "filetags:   ")
-                           ("options"     . "options:    ")
-                           (t . t)))
 
 (setq org-hide-emphasis-markers t)
 
-(add-hook 'org-mode-hook 'org-appear-mode)
-
-(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
-(add-hook 'after-init-hook #'global-company-mode)
-
 (with-system gnu/linux
-  (ensure-packages-installed '(ewal ewal-doom-themes))
-  (load-theme 'ewal-doom-one t)
-  (setq default-font "IBM Plex Mono"
-        variable-font "IBM Plex Mono"
-        monospace-font "IBM Plex Mono"))
+  (setq default-font "Gitlab Mono"
+        variable-font "Gitlab Mono"
+        monospace-font "Gitlab Mono"))
 
 (with-system darwin
-  (load-theme 'modus-operandi t)
   (setq default-font "Courier"
         variable-font "Courier"
         monospace-font "Courier"))
 
-(defun fain/setup-font ()
-  "TODO"
-  (set-face-attribute 'default nil :family default-font :height 120)
-  (set-face-attribute 'variable-pitch nil :family variable-font)
-  (set-face-attribute 'fixed-pitch nil :family monospace-font)
-  (set-fontset-font t nil (font-spec :name "Symbols Nerd Font")))
+;; Setting up fonts
+(custom-set-faces
+ `(default ((t (:font ,default-font :height 120 :weight normal))))
+ `(variable-pitch ((t (:font ,variable-font :weight normal))))
+ `(fixed-pitch((t (:font ,monospace-font :weight normal)))))
+(setq-default line-spacing 0.2)
 
-(defun fain/reload-font ()
+(defun fain/adjust-face-colors ()
   "TODO"
-  (interactive)
-  (fain/setup-font))
-
-(defun fain/make-frame (frame)
-  "Setup Emacs frame."
-  (select-frame frame)
-  (when (display-graphic-p)
-    (fain/style-theme))
-  (fain/setup-font))
-
-(defun fain/style-theme ()
-  "TODO"
-  (set-frame-parameter nil 'alpha-background (if (eq window-system 'x)
-                                                 100
-                                               0))
-  (window-divider-mode 1)
+  (setq background-color (face-attribute 'default :background))
   (dolist (face '(window-divider
                   window-divider-first-pixel
                   window-divider-last-pixel
                   internal-border
                   fringe
+                  mode-line-active
+                  mode-line-inactive
                   border))
-    (face-spec-reset-face face)
-    (set-face-foreground face (face-attribute 'default :background))
-    (set-face-background face (face-attribute 'default :background)))
-  (set-face-background 'fringe (face-attribute 'default :background))
-  (set-face-attribute 'mode-line nil :box nil)
-  (set-face-attribute 'mode-line-inactive nil :box nil))
+    (set-face-attribute face nil :background background-color :foreground background-color)))
 
-(setq-default inhibit-message nil
-      echo-keystrokes nil
-      message-log-max nil)
+(defun fain/make-frame (frame)
+  "Setup Emacs frame."
+  (select-frame frame)
+  (when (display-graphic-p)
+    (fain/adjust-face-colors)))
 
 (add-hook 'after-make-frame-functions #'fain/make-frame)
-(add-hook 'modus-themes-after-load-theme-hook #'fain/style-theme)
 
 (unless (daemonp)
-  (fain/style-theme)
-  (fain/setup-font))
+  (fain/adjust-face-colors))
 
-;; Helpful
-(define-key helpful-mode-map [remap revert-buffer] #'helpful-update)
-(global-set-key [remap describe-command] #'helpful-command)
-(global-set-key [remap describe-function] #'helpful-callable)
-(global-set-key [remap describe-key] #'helpful-key)
-(global-set-key [remap describe-symbol] #'helpful-symbol)
-(global-set-key [remap describe-variable] #'helpful-variable)
-(global-set-key (kbd "C-h F") #'helpful-function)
-(global-set-key (kbd "C-h K") #'describe-keymap)
-
-(setq spacious-padding-widths
-      '(:internal-border-width 16
-        :header-line-width 16
-        :mode-line-width 16
-        :tab-width 2
-        :right-divider-width 16
-        :scroll-bar-width 16))
-
-(spacious-padding-mode 1)
+(setq frame-title-format '("GNU Emacs"))
+(setq display-line-numbers-type 'relative)
+(setq org-ellipsis "…")
 
 (provide 'fain-ui)
 

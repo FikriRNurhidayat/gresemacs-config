@@ -1,8 +1,10 @@
 ;;; fain-dired.el --- Dired configuration file -*- lexical-binding: t -*-
 
-(add-hook 'dired-mode-hook 'dired-hide-details-mode)
-(add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
-
-(use-package all-the-icons-dired)
+(use-package all-the-icons-dired
+  :ensure t
+  :defer t
+  :hook
+  (dired-mode . dired-hide-details-mode)
+  (dired-mode . all-the-icons-dired-mode))
 
 ;;; fain-dired.el ends here

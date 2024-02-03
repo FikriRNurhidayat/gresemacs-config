@@ -1,39 +1,39 @@
 ;;; fain-editor.el -*- lexical-binding: t; -*-
 
-(use-package tree-sitter)
-(use-package tree-sitter-langs)
-(use-package yasnippet)
-(use-package yaml-mode)
-(use-package magit)
+(use-package tree-sitter
+  :ensure t
+  :hook ((js-mode go-mode) . tree-sitter-mode)
+  :config
+  (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
 
-(global-tree-sitter-mode)
-(add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
-(add-to-list 'tree-sitter-major-mode-language-alist '(org-mode . org))
+(use-package tree-sitter-langs
+  :ensure t
+  :defer t)
 
-(setq scroll-conservatively 10000)
-(setq scroll-margin 3)
+(use-package magit
+  :ensure t
+  :defer t)
 
-(setq x-underline-at-descent-line t)
+(setq-default indent-tabs-mode nil
+              tab-width 2
+              c-basic-offset 2
+              standard-indent 2)
 
-(delete-selection-mode 1)               ; Allow us to replace text on selected region
-
-(setq-default indent-tabs-mode nil)     ; Disable tabs, use spaces
-(setq-default tab-width 2)
-(setq-default c-basic-offset 2)
-(setq-default standard-indent 2)
-
-(setq make-backup-files nil)            ; Disable backup files
-(setq auto-save-default nil)            ; Disable auto save files
-(setq completion-ignored-extensions '("#" "~" ".o" ".elc" ".pyc" ".class"))
-
-(define-key prog-mode-map (kbd "C-M-;") 'comment-region)
-(global-set-key (kbd "C-c C-g") 'magit)
+(setq make-backup-files nil
+      auto-save-default nil
+      completion-ignored-extensions '("#" "~" ".o" ".elc" ".pyc" ".class")
+      delete-selection-mode t
+      scroll-conservatively 10000
+      scroll-margin 3
+      x-underline-at-descent-line t)
 
 (defun kill-other-buffers ()
   "Kill other buffers."
   (interactive)
   (mapc 'kill-buffer (delete (current-buffer) (buffer-list))))
 
+(define-key prog-mode-map (kbd "C-M-;") 'comment-region)
+(global-set-key (kbd "C-c C-g") 'magit)
 (global-set-key (kbd "C-x C-k C-o") 'kill-other-buffers)
 
 ;;; fain-editor.el ends here

@@ -1,6 +1,8 @@
 ;;; fain-eshell.el -*- lexical-binding: t; -*-
 
-(use-package eat)
+(use-package eat
+  :ensure t
+  :defer t)
 
 (defun read-file (file-path)
   "Read file with temporary buffer."
@@ -44,22 +46,17 @@
       eshell-aliases-file (expand-file-name "~/.cache/eshell/alias"))
 
 (defun fain/eshell-prompt ()
-  (let ((current-branch (magit-get-current-branch)))
-    (concat
-     "\n"
-     (propertize (system-name) 'face `(:foreground ,(face-attribute 'font-lock-keyword-face :foreground)))
-     (propertize " • " 'face `(:foreground ,(face-attribute 'font-lock-comment-face :foreground)))
-     (propertize (fain/get-prompt-path) 'face `(:foreground ,(face-attribute 'font-lock-variable-name-face :foreground)))
-     (when current-branch
-       (concat
-        (propertize " • " 'face `(:foreground ,(face-attribute 'font-lock-comment-face :foreground)))
-        (propertize (concat " " current-branch) 'face `(:foreground ,(face-attribute 'font-lock-preprocessor-face :foreground)))))
-     (propertize " • " 'face `(:foreground ,(face-attribute 'font-lock-comment-face :foreground)))
-     (propertize (format-time-string "%I:%M:%S %p") 'face `(:foreground ,(face-attribute 'font-lock-comment-face :foreground)))
-     (if (= (user-uid) 0)
-         (propertize "\n#" 'face `(:foreground ,(face-attribute 'font-lock-type-face :foreground)))
-       (propertize "\nλ" 'face `(:foreground ,(face-attribute 'font-lock-type-face :foreground))))
-     (propertize " " 'face `(:foreground ,(face-attribute 'default :foreground))))))
+  (concat
+   "\n"
+   (propertize (system-name) 'face `(:foreground ,(face-attribute 'font-lock-keyword-face :foreground)))
+   (propertize " • " 'face `(:foreground ,(face-attribute 'font-lock-comment-face :foreground)))
+   (propertize (fain/get-prompt-path) 'face `(:foreground ,(face-attribute 'font-lock-variable-name-face :foreground)))
+   (propertize " • " 'face `(:foreground ,(face-attribute 'font-lock-comment-face :foreground)))
+   (propertize (format-time-string "%I:%M:%S %p") 'face `(:foreground ,(face-attribute 'font-lock-comment-face :foreground)))
+   (if (= (user-uid) 0)
+       (propertize "\n#" 'face `(:foreground ,(face-attribute 'font-lock-type-face :foreground)))
+     (propertize "\nλ" 'face `(:foreground ,(face-attribute 'font-lock-type-face :foreground))))
+   (propertize " " 'face `(:foreground ,(face-attribute 'default :foreground)))))
 
 (defun fain/get-prompt-path ()
   (let* ((current-path (eshell/pwd))
