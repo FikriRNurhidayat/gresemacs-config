@@ -37,5 +37,6 @@
 (use-module 'fain-tools)
 (use-module 'fain-wiki)
 (use-module 'fain-word)
+(use-module 'fain-window)
 
 ;; init.el ends here

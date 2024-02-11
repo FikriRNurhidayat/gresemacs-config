@@ -10,8 +10,12 @@
               ("C-c o" . eglot-code-action-organize-imports)
               ("C-c h" . eldoc)
               ("C-c r" . eglot-reconnect)
-              ("C-c c f" . xref-find-definitions))
+              ("C-c c f" . xref-find-definitions)
+              ("C-x p d" . flymake-show-project-diagnostics))
   :hook ((go-mode c++-mode c-mode rust-mode js-mode) . eglot-ensure)
+  :custom
+  (eglot-autoshutdown t)
+  (eglot-autoreconnect t)
   :config
   (add-to-list 'eglot-server-programs
                '((rust-ts-mode rust-mode) . ("rustup" "run" "stable" "rust-analyzer"))))
@@ -33,5 +37,7 @@
   :defer t)
 
 (setq flymake-fringe-indicator-position nil)
+
+(add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
 
 ;;; fain-ide.el ends here

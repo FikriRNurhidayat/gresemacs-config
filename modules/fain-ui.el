@@ -14,13 +14,12 @@
   :defer t
   :ensure t
   :custom (spacious-padding-widths
-           '(:internal-border-width 16
-                                    :header-line-width 16
-                                    :mode-line-width 16
-                                    :tab-width 2
-                                    :right-divider-width 16
-                                    :scroll-bar-width 16))
-  :init (spacious-padding-mode))
+           '(
+             :internal-border-width 16
+             :mode-line-width 16
+             :tab-width 2
+             :right-divider-width 16))
+  :init (spacious-padding-mode 1))
 
 (use-package helpful
   :defer t
@@ -59,8 +58,8 @@
                        ("filetags"    . "filetags:   ")
                        ("options"     . "options:    ")
                        (t . t)))
-  :config
-  (global-org-modern-mode))
+  :init
+  (global-org-modern-mode 1))
 
 (use-package org-appear
   :defer t
@@ -81,15 +80,14 @@
 
 (use-package ligature
   :ensure t
-  :config
+  :init
   (global-ligature-mode 1))
 
 (use-package hide-mode-line
   :ensure t
-  :config
+  :hook (fundamental-mode . turn-on-hide-mode-line-mode)
+  :init
   (global-hide-mode-line-mode 1))
-
-(global-visual-line-mode 1)
 
 (setq org-hide-emphasis-markers t)
 
@@ -113,15 +111,22 @@
 (defun fain/adjust-face-colors ()
   "TODO"
   (setq background-color (face-attribute 'default :background))
+  (dolist (face '(org-block-begin-line
+                  org-block
+                  org-block-end-line))
+    (set-face-attribute face nil :background background-color))
   (dolist (face '(window-divider
                   window-divider-first-pixel
                   window-divider-last-pixel
                   internal-border
                   fringe
-                  mode-line-active
-                  mode-line-inactive
                   border))
-    (set-face-attribute face nil :background background-color :foreground background-color)))
+    (set-face-attribute face nil :background background-color :foreground background-color))
+  (dolist (face '(mode-line-active
+                  mode-line-inactive
+                  mode-line
+                  header-line))
+    (set-face-attribute face nil :background background-color :box `(:line-width 16 :color ,background-color :style nil))))
 
 (defun fain/make-frame (frame)
   "Setup Emacs frame."

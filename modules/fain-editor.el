@@ -2,7 +2,7 @@
 
 (use-package tree-sitter
   :ensure t
-  :hook ((js-mode go-mode) . tree-sitter-mode)
+  :hook ((js-mode go-mode org-mode) . tree-sitter-mode)
   :config
   (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
 
@@ -13,6 +13,17 @@
 (use-package magit
   :ensure t
   :defer t)
+
+(use-package visual-fill-column
+  :ensure t
+  :hook (visual-line-mode . visual-fill-column-mode)
+  :custom
+  (visual-fill-column-center-text t)
+  (visual-fill-column-width 74))
+
+(use-package org
+  :hook
+  (org-mode . visual-line-mode))
 
 (setq-default indent-tabs-mode nil
               tab-width 2
