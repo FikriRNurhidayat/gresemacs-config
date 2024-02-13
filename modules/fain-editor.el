@@ -21,6 +21,12 @@
   (visual-fill-column-center-text t)
   (visual-fill-column-width 74))
 
+(use-package csv-mode
+  :ensure t
+  :hook (csv-mode . csv-align-mode)
+  :init
+  (add-hook 'csv-mode-hook '(lambda () (interactive) (toggle-truncate-lines nil))))
+
 (use-package org
   :hook
   (org-mode . visual-line-mode))
@@ -33,10 +39,11 @@
 (setq make-backup-files nil
       auto-save-default nil
       completion-ignored-extensions '("#" "~" ".o" ".elc" ".pyc" ".class")
-      delete-selection-mode t
       scroll-conservatively 10000
       scroll-margin 3
       x-underline-at-descent-line t)
+
+(delete-selection-mode 1)
 
 (defun kill-other-buffers ()
   "Kill other buffers."

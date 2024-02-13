@@ -126,7 +126,10 @@
                   mode-line-inactive
                   mode-line
                   header-line))
-    (set-face-attribute face nil :background background-color :box `(:line-width 16 :color ,background-color :style nil))))
+    (set-face-attribute face nil :background background-color :box `(:line-width 16 :color ,background-color :style nil)))
+  (dolist (face '(line-number
+                  line-number-current-line))
+    (set-face-attribute face nil :background background-color)))
 
 (defun fain/make-frame (frame)
   "Setup Emacs frame."

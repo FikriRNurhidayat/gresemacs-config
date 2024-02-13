@@ -1,6 +1,7 @@
 ;;; fain-wiki.el -*- lexical-binding: t; -*-
 
 (use-package org-roam
+  :ensure t
   :bind (("C-c n n" . org-roam-capture)
          ("C-c n l" . org-roam-buffer-toggle)
          ("C-c n f f" . org-roam-node-find)
