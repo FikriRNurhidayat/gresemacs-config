@@ -10,17 +10,6 @@
   :ensure t
   :hook (fundamental-mode))
 
-(use-package spacious-padding
-  :defer t
-  :ensure t
-  :custom (spacious-padding-widths
-           '(
-             :internal-border-width 16
-             :mode-line-width 16
-             :tab-width 2
-             :right-divider-width 16))
-  :init (spacious-padding-mode 1))
-
 (use-package helpful
   :defer t
   :ensure t
@@ -66,11 +55,6 @@
   :ensure t
   :hook (org-mode . org-appear-mode))
 
-;; TODO: Remove this package
-(use-package mixed-pitch
-  :defer t
-  :ensure t)
-
 (use-package catppuccin-theme
   :ensure t
   :custom
@@ -92,9 +76,9 @@
 (setq org-hide-emphasis-markers t)
 
 (with-system gnu/linux
-  (setq default-font "Gitlab Mono"
-        variable-font "Gitlab Mono"
-        monospace-font "Gitlab Mono"))
+  (setq default-font "IBM Plex Mono"
+        variable-font "IBM Plex Mono"
+        monospace-font "IBM Plex Mono"))
 
 (with-system darwin
   (setq default-font "Courier"
@@ -103,9 +87,9 @@
 
 ;; Setting up fonts
 (custom-set-faces
- `(default ((t (:font ,default-font :height 120 :weight normal))))
- `(variable-pitch ((t (:font ,variable-font :weight normal))))
- `(fixed-pitch((t (:font ,monospace-font :weight normal)))))
+ `(default ((t (:font ,default-font :weight normal))))
+ `(variable-pitch ((t (:font ,variable-font normal))))
+ `(fixed-pitch((t (:font ,monospace-font normal)))))
 (setq-default line-spacing 0.2)
 
 (defun fain/adjust-face-colors ()
@@ -131,16 +115,19 @@
                   line-number-current-line))
     (set-face-attribute face nil :background background-color)))
 
+
 (defun fain/make-frame (frame)
   "Setup Emacs frame."
   (select-frame frame)
   (when (display-graphic-p)
-    (fain/adjust-face-colors)))
+    ;; (fain/adjust-face-colors)
+    ))
 
 (add-hook 'after-make-frame-functions #'fain/make-frame)
 
 (unless (daemonp)
-  (fain/adjust-face-colors))
+  ;; (fain/adjust-face-colors)
+  )
 
 (setq frame-title-format '("GNU Emacs"))
 (setq display-line-numbers-type 'relative)
