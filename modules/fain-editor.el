@@ -27,10 +27,6 @@
   :init
   (add-hook 'csv-mode-hook '(lambda () (interactive) (toggle-truncate-lines nil))))
 
-(use-package org
-  :hook
-  (org-mode . visual-line-mode))
-
 (setq-default indent-tabs-mode nil
               tab-width 2
               c-basic-offset 2

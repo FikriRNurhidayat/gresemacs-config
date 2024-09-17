@@ -32,11 +32,10 @@
 (use-module 'fain-editor)
 (use-module 'fain-eshell)
 (use-module 'fain-ide)
+(use-module 'fain-org)
 (use-module 'fain-present)
 (use-module 'fain-project)
 (use-module 'fain-tools)
-(use-module 'fain-wiki)
-(use-module 'fain-word)
 (use-module 'fain-window)
 
 ;; init.el ends here

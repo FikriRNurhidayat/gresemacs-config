@@ -30,31 +30,6 @@
   :defer t
   :ensure t)
 
-(use-package org-modern
-  :defer t
-  :ensure t
-  :custom
-  (org-modern-hide-stars t)
-  (org-modern-block-fringe nil)
-  (org-modern-keyword '(("title"       . "title:      ")
-                       ("description" . "description:")
-                       ("summary"     . "summary:    ")
-                       ("subtitle"    . "subtitle:   ")
-                       ("date"        . "date:       ")
-                       ("email"       . "email:      ")
-                       ("author"      . "author:     ")
-                       ("language"    . "language:   ")
-                       ("filetags"    . "filetags:   ")
-                       ("options"     . "options:    ")
-                       (t . t)))
-  :init
-  (global-org-modern-mode 1))
-
-(use-package org-appear
-  :defer t
-  :ensure t
-  :hook (org-mode . org-appear-mode))
-
 (use-package catppuccin-theme
   :ensure t
   :custom
@@ -73,8 +48,6 @@
   :init
   (global-hide-mode-line-mode 1))
 
-(setq org-hide-emphasis-markers t)
-
 (with-system gnu/linux
   (setq default-font "IBM Plex Mono"
         variable-font "IBM Plex Mono"
@@ -92,46 +65,8 @@
  `(fixed-pitch((t (:font ,monospace-font normal)))))
 (setq-default line-spacing 0.2)
 
-(defun fain/adjust-face-colors ()
-  "TODO"
-  (setq background-color (face-attribute 'default :background))
-  (dolist (face '(org-block-begin-line
-                  org-block
-                  org-block-end-line))
-    (set-face-attribute face nil :background background-color))
-  (dolist (face '(window-divider
-                  window-divider-first-pixel
-                  window-divider-last-pixel
-                  internal-border
-                  fringe
-                  border))
-    (set-face-attribute face nil :background background-color :foreground background-color))
-  (dolist (face '(mode-line-active
-                  mode-line-inactive
-                  mode-line
-                  header-line))
-    (set-face-attribute face nil :background background-color :box `(:line-width 16 :color ,background-color :style nil)))
-  (dolist (face '(line-number
-                  line-number-current-line))
-    (set-face-attribute face nil :background background-color)))
-
-
-(defun fain/make-frame (frame)
-  "Setup Emacs frame."
-  (select-frame frame)
-  (when (display-graphic-p)
-    ;; (fain/adjust-face-colors)
-    ))
-
-(add-hook 'after-make-frame-functions #'fain/make-frame)
-
-(unless (daemonp)
-  ;; (fain/adjust-face-colors)
-  )
-
 (setq frame-title-format '("GNU Emacs"))
 (setq display-line-numbers-type 'relative)
-(setq org-ellipsis "…")
 
 (provide 'fain-ui)
 
