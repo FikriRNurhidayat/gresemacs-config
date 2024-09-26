@@ -61,23 +61,21 @@
 	      (org-present)
 	    (org-present-quit)))
 
-  (defvar fain/org-present-org-level-scale '((org-level-1 . 1.5)
-										                         (org-level-2 . 1.25)
-										                         (org-level-3 . 1.25)
-										                         (org-level-4 . 1.25)
-										                         (org-level-5 . 1.25)
-										                         (org-level-6 . 1.25)
-										                         (org-level-7 . 1.25)
-										                         (org-level-8 . 1.25))
+  (defvar fain/org-present-org-level-scale '((org-level-1 . 1.0)
+										                         (org-level-2 . 1.0)
+										                         (org-level-3 . 1.0)
+										                         (org-level-4 . 1.0)
+										                         (org-level-5 . 1.0)
+										                         (org-level-6 . 1.0)
+										                         (org-level-7 . 1.0)
+										                         (org-level-8 . 1.0))
     "Org level size remap for presentation.")
 
   (defun fain/org-present-enable-hook ()
     (setq-local fain/org-present--inhibit-message inhibit-message
 			          fain/org-present--echo-keystrokes echo-keystrokes
 			          fain/org-present--visual-line-mode visual-line-mode
-			          fain/org-present--org-ellipsis org-ellipsis
-			          fain/org-present--org-indent-mode org-indent-mode)
-    (org-indent-mode 0)
+			          fain/org-present--org-ellipsis org-ellipsis)
 
     ;; Disable 'org-modern-mode' to setup adjustment if it's installed
     (if (package-installed-p 'org-modern)
@@ -87,45 +85,30 @@
                 echo-keystrokes nil
                 header-line-format " "
 			          org-ellipsis "⤵")
+		(setq-local fain/org-present--visual-fill-column-mode visual-fill-column-mode
+					      fain/org-present--visual-fill-column-width visual-fill-column-width
+					      fain/org-present--visual-fill-column-center-text visual-fill-column-center-text)
+		(setq-local visual-fill-column-width 74
+					      visual-fill-column-center-text t)
 
-    (if (package-installed-p 'visual-fill-column)
-	      (progn
-		      (setq-local fain/org-present--visual-fill-column-mode visual-fill-column-mode
-					            fain/org-present--visual-fill-column-width visual-fill-column-width
-					            fain/org-present--visual-fill-column-center-text visual-fill-column-center-text)
-		      (setq-local visual-fill-column-width 128
-					            visual-fill-column-center-text t)))
-
-    (if (package-installed-p 'org-modern)
-	      (setq-local fain/org-present--org-modern-hide-stars org-modern-hide-stars
-				            fain/org-present--org-modern-keyword org-modern-keyword
-				            fain/org-present--org-modern-block-fringe org-modern-block-fringe
-
-				            org-modern-hide-stars t
-				            org-modern-block-fringe nil
-				            org-modern-keyword fain/org-present-org-modern-keyword))
-
+	  (setq-local fain/org-present--org-modern-hide-stars org-modern-hide-stars
+				        fain/org-present--org-modern-keyword org-modern-keyword
+				        fain/org-present--org-modern-block-fringe org-modern-block-fringe
+				        org-modern-hide-stars t
+				        org-modern-block-fringe nil
+				        org-modern-keyword fain/org-present-org-modern-keyword)
     (setq-local face-remapping-alist (append (mapcar (lambda (face) `(,(car face) (:height ,(cdr face))  ,(car face))) fain/org-present-org-level-scale)
                                              `((default (:height 1.5) default)
                                                (header-line (:height 8.0 :background ,(face-attribute 'default :background)) header-line)
                                                (org-block (:background ,(face-attribute 'org-block-begin-line :background)) org-block)
-                                               (org-document-title (:height 2.5) org-document-title)
-                                               (org-document-info (:height 1.25) org-document-info))))
+                                               (org-document-title (:height 1.5) org-document-title)
+                                               (org-document-info (:height 1.5) org-document-info))))
     (display-line-numbers-mode 0)
-
-    (if (package-installed-p 'visual-fill-column)
-	      (visual-fill-column-mode 1))
-
-    (if (package-installed-p 'org-modern)
-	      (org-modern-mode 1))
-
-    (if (package-installed-p 'hide-mode-line)
-	      (hide-mode-line-mode 1))
-
-    (if (package-installed-p 'mixed-pitch)
-	      (mixed-pitch-mode 1))
-
     (visual-line-mode 1)
+	  (visual-fill-column-mode 1)
+	  (org-modern-mode 1)
+	  (hide-mode-line-mode 1)
+	  (mixed-pitch-mode 1)
     (org-display-inline-images))
 
   (defun fain/org-present-prepare-slide (buffer-name heading)
@@ -149,8 +132,6 @@
 		      (setq-local visual-fill-column-width fain/org-present--visual-fill-column-width
 					            visual-fill-column-center-text fain/org-present--visual-fill-column-center-text)
 		      (visual-fill-column-mode 0)))
-
-    (org-indent-mode fain/org-present--org-indent-mode)
 
     (if (package-installed-p 'hide-mode-line)
 	      (hide-mode-line-mode 0))

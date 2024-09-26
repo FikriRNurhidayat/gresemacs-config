@@ -1,5 +1,8 @@
 ;;; fain-ui.el -*- lexical-binding: t; -*-
 
+(use-package visual-fill-column
+  :ensure t)
+
 (use-package vertico
   :ensure t
   :defer t
@@ -54,9 +57,12 @@
         monospace-font "IBM Plex Mono"))
 
 (with-system darwin
-  (setq default-font "Courier"
-        variable-font "Courier"
-        monospace-font "Courier"))
+  (setq default-font "Cousine Nerd Font"
+        variable-font "Cousine Nerd Font"
+        monospace-font "Cousine Nerd Font"))
+
+(when (display-graphic-p)
+  (set-frame-font default-font))
 
 ;; Setting up fonts
 (custom-set-faces
