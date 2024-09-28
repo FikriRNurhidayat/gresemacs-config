@@ -37,7 +37,8 @@
       completion-ignored-extensions '("#" "~" ".o" ".elc" ".pyc" ".class")
       scroll-conservatively 10000
       scroll-margin 3
-      x-underline-at-descent-line t)
+      x-underline-at-descent-line t
+      xref-search-program 'ripgrep)
 
 (delete-selection-mode 1)
 

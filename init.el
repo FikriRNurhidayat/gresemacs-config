@@ -30,7 +30,7 @@
 (use-module 'fain-ui)
 (use-module 'fain-dired)
 (use-module 'fain-editor)
-(use-module 'fain-eshell)
+; (use-module 'fain-eshell)
 (use-module 'fain-ide)
 (use-module 'fain-org)
 (use-module 'fain-present)

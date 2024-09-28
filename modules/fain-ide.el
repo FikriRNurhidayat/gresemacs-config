@@ -12,7 +12,7 @@
               ("C-c r" . eglot-reconnect)
               ("C-c c f" . xref-find-definitions)
               ("C-x p d" . flymake-show-project-diagnostics))
-  :hook ((go-mode c++-mode c-mode rust-mode js-mode) . eglot-ensure)
+  :hook ((go-mode c++-mode c-mode rust-mode js-mode typescript-mode) . eglot-ensure)
   :custom
   (eglot-autoshutdown t)
   (eglot-autoreconnect t)
@@ -23,6 +23,11 @@
 (use-package go-mode
   :ensure t
   :defer t)
+
+(use-package typescript-mode
+  :ensure t
+  :defer t)
+
 (use-package rust-mode
   :ensure t
   :defer t)

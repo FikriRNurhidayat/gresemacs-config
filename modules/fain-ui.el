@@ -45,11 +45,14 @@
   :init
   (global-ligature-mode 1))
 
-(use-package hide-mode-line
-  :ensure t
-  :hook (fundamental-mode . turn-on-hide-mode-line-mode)
-  :init
-  (global-hide-mode-line-mode 1))
+(defun fain/make-frame (frame)
+  "Setup Emacs frame."
+  (select-frame frame)
+  (when (display-graphic-p)
+    (set-frame-font default-font)
+    (set-frame-parameter nil 'alpha-background 0.9)))
+
+(add-hook 'after-make-frame-functions #'fain/make-frame)
 
 (with-system gnu/linux
   (setq default-font "IBM Plex Mono"
@@ -61,15 +64,12 @@
         variable-font "Cousine Nerd Font"
         monospace-font "Cousine Nerd Font"))
 
-(when (display-graphic-p)
-  (set-frame-font default-font))
-
 ;; Setting up fonts
 (custom-set-faces
  `(default ((t (:font ,default-font :weight normal))))
  `(variable-pitch ((t (:font ,variable-font normal))))
  `(fixed-pitch((t (:font ,monospace-font normal)))))
-(setq-default line-spacing 0.2)
+(setq-default line-spacing 1)
 
 (setq frame-title-format '("GNU Emacs"))
 (setq display-line-numbers-type 'relative)
